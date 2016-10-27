@@ -81,14 +81,25 @@ class Queen {
 }
 
 @SuppressWarnings("serial")
-public class QueenSolver extends JFrame {
+public class QueenSolver extends JFrame implements ActionListener {
 	  public static int input;
 	  private Queen lastQueen = null;
-	  
+      JTextField io,output;
+      JButton print;
+     
+ 
+     
+      public void actionPerformed(ActionEvent e) {
+             if(e.getSource()== print )
+             {
+                   output.setText(io.getText());
+             }
+      }
+     
 	  public static void main(String [] args) {
-//		System.out.println("Enter the size of the Board: ");
-//		Scanner scan = new Scanner(System.in);
-//		input=scan.nextInt();//take n as an Input
+		System.out.println("Enter the size of the Board: ");
+		Scanner scan = new Scanner(System.in);
+		input=scan.nextInt();//take n as an Input
 		scan.close();
 		QueenSolver world = new QueenSolver();
 		world.setVisible(true);
@@ -103,6 +114,20 @@ public class QueenSolver extends JFrame {
 		}
 		addMouseListener(new MouseKeeper());
 		addWindowListener(new CloseQuit());
+        setLayout(null);
+        io = new JTextField(5);
+        io.setBounds(100,20,100,20);
+        add(io);
+     
+      output = new JTextField(5);
+      output.setBounds(180,200,100,20);
+      add(output);
+     
+      print = new JButton("Get Value");
+      print.setBounds(20,200,100,20);
+      print.addActionListener(this);
+      add(print);
+   
 	}
 
 	  public void paint(Graphics g) {
