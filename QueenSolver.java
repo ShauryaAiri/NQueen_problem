@@ -84,7 +84,7 @@ class Queen {
 public class QueenSolver extends JFrame implements ActionListener {
 	  public static int input;
 	  private Queen lastQueen = null;
-      JButton b1;
+      JButton b1,b2;
       JPanel panel = new JPanel();
       public void actionPerformed(ActionEvent e) {
              if(e.getSource()== b1 )
@@ -92,7 +92,16 @@ public class QueenSolver extends JFrame implements ActionListener {
             	lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
  				repaint();
              }
+             else if (e.getSource()== b2 ){
+            	 System.exit(0);
+             }
       }
+ /*     public void actionPerformed(ActionEvent e) {
+          if(e.getSource()== b2 )
+          {
+        	  System.exit(0);
+          }
+   }*/
 	  public static void main(String [] args) {
 //		  JTextField field = new JTextField(10);
 //		  container.add(field, BorderLayout.SOUTH);
@@ -118,13 +127,16 @@ public class QueenSolver extends JFrame implements ActionListener {
 //		addMouseListener(new MouseKeeper());
 		addWindowListener(new CloseQuit());
 //		JButton b1;
-		
+		b2 = new JButton("Close");	
+		b2.setBounds(150,50*input+70,100,20);
+		b2.addActionListener(this);
 		b1 = new JButton("Next");	
 		b1.setBounds(20,50*input+70,100,20);
 		b1.addActionListener(this);
 		panel.setLayout(null);
-		panel.setBounds(20,50*input+65,100,20);
+		panel.setBounds(20,50*input+65,300,20);
 		panel.add(b1);
+		panel.add(b2);
 		add(panel);
 	}
 
