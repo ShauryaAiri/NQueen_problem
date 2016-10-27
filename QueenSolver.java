@@ -48,7 +48,7 @@ class Queen {
 			
 		}
 
-	private boolean canAttack(int testRow, int testColumn) {
+	public boolean canAttack(int testRow, int testColumn) {
 		int columnDifference = testColumn - column;
 		if ((row == testRow) ||
 			(row + columnDifference == testRow) ||
@@ -68,11 +68,22 @@ class Queen {
 		int x = (row - 1) * 50 + 15;
 		int y = (column - 1) * 50 + 45;
         Polygon crown = new Polygon();
-        crown.addPoint(x, y);
+/*        crown.addPoint(x, y);
         crown.addPoint(x + 10, y + 10);
         crown.addPoint(x+20, y);
         crown.addPoint(x + 30, y+10);
         crown.addPoint(x+40, y);
+        crown.addPoint(x + 30, y + 40);
+        crown.addPoint(x+10, y + 40);*/
+        crown.addPoint(x, y+2);
+        crown.addPoint(x + 8, y + 10);
+        crown.addPoint(x+9, y+2);
+        crown.addPoint(x + 15, y+10);
+        crown.addPoint(x+20, y-3);
+        crown.addPoint(x+25, y+10);
+        crown.addPoint(x+30, y+2);
+        crown.addPoint(x+32, y+10);
+        crown.addPoint(x+40, y+2);
         crown.addPoint(x + 30, y + 40);
         crown.addPoint(x+10, y + 40);
         g.drawPolygon(crown);
@@ -90,7 +101,8 @@ public class QueenSolver extends JFrame implements ActionListener {
              if(e.getSource()== b1 )
              {
             	lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
- 				repaint();
+            	
+            	repaint();
              }
              else if (e.getSource()== b2 ){
             	 System.exit(0);
@@ -124,14 +136,11 @@ public class QueenSolver extends JFrame implements ActionListener {
 			lastQueen = new Queen(i, lastQueen);
 			lastQueen.findSolution();
 		}
-//		addMouseListener(new MouseKeeper());
-		addWindowListener(new CloseQuit());
-//		JButton b1;
 		b2 = new JButton("Close");	
-		b2.setBounds(150,50*input+70,100,20);
+		b2.setBounds(150,50*input+60,100,20);
 		b2.addActionListener(this);
 		b1 = new JButton("Next");	
-		b1.setBounds(20,50*input+70,100,20);
+		b1.setBounds(20,50*input+60,100,20);
 		b1.addActionListener(this);
 		panel.setLayout(null);
 		panel.setBounds(20,50*input+65,300,20);
@@ -152,18 +161,7 @@ public class QueenSolver extends JFrame implements ActionListener {
 		  lastQueen.paint(g);
 	  }
 
-		private class CloseQuit extends WindowAdapter {//WindowsAdaptor:This class exists as convenience for creating listener objects.
-			public void windowClosing (WindowEvent e) {
-				System.exit(0);
-			}
-		}
 
-//		private class MouseKeeper extends MouseAdapter {
-//			public void mousePressed (MouseEvent e) {
-//				lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
-//				repaint();
-//			}
-//		}
 }
 
 
