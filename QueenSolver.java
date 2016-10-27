@@ -85,6 +85,7 @@ public class QueenSolver extends JFrame implements ActionListener {
 	  public static int input;
 	  private Queen lastQueen = null;
       JButton b1;
+      JPanel panel = new JPanel();
       public void actionPerformed(ActionEvent e) {
              if(e.getSource()== b1 )
              {
@@ -117,10 +118,14 @@ public class QueenSolver extends JFrame implements ActionListener {
 //		addMouseListener(new MouseKeeper());
 		addWindowListener(new CloseQuit());
 //		JButton b1;
-		b1 = new JButton("CLick for next solution!");	
+		
+		b1 = new JButton("Next");	
 		b1.setBounds(20,50*input+70,100,20);
 		b1.addActionListener(this);
-		add(b1);
+		panel.setLayout(null);
+		panel.setBounds(20,50*input+65,100,20);
+		panel.add(b1);
+		add(panel);
 	}
 
 	  public void paint(Graphics g) {
