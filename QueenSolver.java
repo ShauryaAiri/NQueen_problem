@@ -6,9 +6,9 @@ import javax.swing.*;
 import nqueens.Queen;
 import nqueens.QueenSolver;
 class Queen {
-	private int row;//We advance the queen through rows to get the solutions
-	private int column;//immutable
-	private Queen neighbor;//immutable
+	public int row;//We advance the queen through rows to get the solutions
+	public int column;//immutable
+	public Queen neighbor;//immutable
 	Queen (int c, Queen n) {//initialize
 		row = 1;
 		column = c;
@@ -44,6 +44,7 @@ class Queen {
 		else
 			return false;
 		row = 1;
+
 		return findSolution();
 			
 		}
@@ -68,13 +69,6 @@ class Queen {
 		int x = (row - 1) * 50 + 15;
 		int y = (column - 1) * 50 + 45;
         Polygon crown = new Polygon();
-/*        crown.addPoint(x, y);
-        crown.addPoint(x + 10, y + 10);
-        crown.addPoint(x+20, y);
-        crown.addPoint(x + 30, y+10);
-        crown.addPoint(x+40, y);
-        crown.addPoint(x + 30, y + 40);
-        crown.addPoint(x+10, y + 40);*/
         crown.addPoint(x, y+2);
         crown.addPoint(x + 8, y + 10);
         crown.addPoint(x+9, y+2);
@@ -94,37 +88,34 @@ class Queen {
 @SuppressWarnings("serial")
 public class QueenSolver extends JFrame implements ActionListener {
 	  public static int input;
+	  public static int count=1;
 	  private Queen lastQueen = null;
       JButton b1,b2;
       JPanel panel = new JPanel();
+      public static JLabel label=new JLabel();
       public void actionPerformed(ActionEvent e) {
              if(e.getSource()== b1 )
              {
-            	lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
-            	
-            	repaint();
+
+             	count+=1;
+             	label.setText("Solution # " + count);
+             	panel.add(label);
+            	 lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
+//            	 if(lastQueen.advance()==false)
+//            		 System.exit(0);
+              	if(lastQueen.column==lastQueen.neighbor.column || lastQueen.row==lastQueen.neighbor.row){
+             		System.exit(0);
+             	}
+            	 repaint();
              }
              else if (e.getSource()== b2 ){
             	 System.exit(0);
              }
       }
- /*     public void actionPerformed(ActionEvent e) {
-          if(e.getSource()== b2 )
-          {
-        	  System.exit(0);
-          }
-   }*/
 	  public static void main(String [] args) {
-//		  JTextField field = new JTextField(10);
-//		  container.add(field, BorderLayout.SOUTH);
 		JFrame frame = new JFrame("Input Dialog Box");
 		String name = JOptionPane.showInputDialog(frame, "Enter the size of Board", "InputBox",JOptionPane.PLAIN_MESSAGE);
 		input=Integer.parseInt(name);
-		
-//		System.out.println("Enter the size of the Board: ");
-//		Scanner scan = new Scanner(System.in);
-//		input=scan.nextInt();//take n as an Input
-//		scan.close();
 		QueenSolver world = new QueenSolver();
 		world.setVisible(true);
 		}
@@ -144,6 +135,10 @@ public class QueenSolver extends JFrame implements ActionListener {
 		b1.addActionListener(this);
 		panel.setLayout(null);
 		panel.setBounds(20,50*input+65,300,20);
+		label.setLocation(100,50*input+80);
+		label.setSize(86, 14);
+		label.setText("Solution # " + count);
+		panel.add(label);
 		panel.add(b1);
 		panel.add(b2);
 		add(panel);
