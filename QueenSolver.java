@@ -81,22 +81,22 @@ class Queen {
 }
 
 @SuppressWarnings("serial")
-public class QueenSolver extends JFrame implements ActionListener {
+public class QueenSolver extends JFrame  {
 	  public static int input;
 	  private Queen lastQueen = null;
-      JTextField io,output;
+	  
+/*      JTextField io,output;
       JButton print;
-     
- 
-     
       public void actionPerformed(ActionEvent e) {
              if(e.getSource()== print )
              {
                    output.setText(io.getText());
              }
       }
-     
+     */
 	  public static void main(String [] args) {
+//		  JTextField field = new JTextField(10);
+//		  container.add(field, BorderLayout.SOUTH);
 		System.out.println("Enter the size of the Board: ");
 		Scanner scan = new Scanner(System.in);
 		input=scan.nextInt();//take n as an Input
@@ -114,19 +114,20 @@ public class QueenSolver extends JFrame implements ActionListener {
 		}
 		addMouseListener(new MouseKeeper());
 		addWindowListener(new CloseQuit());
-        setLayout(null);
-        io = new JTextField(5);
-        io.setBounds(100,20,100,20);
-        add(io);
-     
-      output = new JTextField(5);
-      output.setBounds(180,200,100,20);
-      add(output);
-     
-      print = new JButton("Get Value");
-      print.setBounds(20,200,100,20);
-      print.addActionListener(this);
-      add(print);
+		JFrame frame = new JFrame("InputDialog Example #1");
+
+	    // prompt the user to enter their name
+	    String name = JOptionPane.showInputDialog(frame, "Enter the size of Board");
+	    input=Integer.parseInt(name);
+//        setLayout(null);
+//        io = new JTextField(5);
+//        io.setBounds(150,20,100,20);
+//        add(io);
+//     
+//        print = new JButton("Enter the size of Board");
+//        print.setBounds(20,20,100,20);
+//        print.addActionListener(this);
+//        add(print);
    
 	}
 
