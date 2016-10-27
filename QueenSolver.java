@@ -86,9 +86,9 @@ public class QueenSolver extends JFrame {
 	  private Queen lastQueen = null;
 	  
 	  public static void main(String [] args) {
-		System.out.println("Enter the size of the Board: ");
-		Scanner scan = new Scanner(System.in);
-		input=scan.nextInt();//take n as an Input
+//		System.out.println("Enter the size of the Board: ");
+//		Scanner scan = new Scanner(System.in);
+//		input=scan.nextInt();//take n as an Input
 		scan.close();
 		QueenSolver world = new QueenSolver();
 		world.setVisible(true);
