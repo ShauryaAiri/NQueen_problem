@@ -1,7 +1,7 @@
 package nqueens;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Scanner;
+//import java.util.Scanner;
 import javax.swing.*;
 import nqueens.Queen;
 import nqueens.QueenSolver;
@@ -81,26 +81,28 @@ class Queen {
 }
 
 @SuppressWarnings("serial")
-public class QueenSolver extends JFrame  {
+public class QueenSolver extends JFrame implements ActionListener {
 	  public static int input;
 	  private Queen lastQueen = null;
-	  
-/*      JTextField io,output;
-      JButton print;
+      JButton b1;
       public void actionPerformed(ActionEvent e) {
-             if(e.getSource()== print )
+             if(e.getSource()== b1 )
              {
-                   output.setText(io.getText());
+            	 lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
+ 				repaint();
              }
       }
-     */
 	  public static void main(String [] args) {
 //		  JTextField field = new JTextField(10);
 //		  container.add(field, BorderLayout.SOUTH);
-		System.out.println("Enter the size of the Board: ");
-		Scanner scan = new Scanner(System.in);
-		input=scan.nextInt();//take n as an Input
-		scan.close();
+		  JFrame frame = new JFrame("Input Dialog Box");
+		  String name = JOptionPane.showInputDialog(frame, "Enter the size of Board", "InputBox",JOptionPane.PLAIN_MESSAGE);
+		input=Integer.parseInt(name);
+		
+//		System.out.println("Enter the size of the Board: ");
+//		Scanner scan = new Scanner(System.in);
+//		input=scan.nextInt();//take n as an Input
+//		scan.close();
 		QueenSolver world = new QueenSolver();
 		world.setVisible(true);
 		}
@@ -114,11 +116,14 @@ public class QueenSolver extends JFrame  {
 		}
 		addMouseListener(new MouseKeeper());
 		addWindowListener(new CloseQuit());
-		JFrame frame = new JFrame("InputDialog Example #1");
-
+		JButton b1;
+		b1 = new JButton("Click Here to Begin!");	
+		b1.setBounds(20, 50*input+70,100,20);
+		b1.addActionListener(this);
+		add(b1);
+		
 	    // prompt the user to enter their name
-	    String name = JOptionPane.showInputDialog(frame, "Enter the size of Board");
-	    input=Integer.parseInt(name);
+
 //        setLayout(null);
 //        io = new JTextField(5);
 //        io.setBounds(150,20,100,20);
@@ -138,7 +143,7 @@ public class QueenSolver extends JFrame  {
 			  g.drawLine(50 * i + 10, 40, 50*i + 10, 40+50*input);
 			  g.drawLine(10, 50 * i + 40, 10+50*input, 50*i + 40);
 		  }
-		  g.drawString("Click Mouse for Next Solution", 20, 50*input+70);
+//		  g.drawString("Click Mouse for Next Solution", 20, 50*input+70);
 		  // draw queens
 		  lastQueen.paint(g);
 	  }
