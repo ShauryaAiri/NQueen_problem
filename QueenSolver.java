@@ -88,15 +88,15 @@ public class QueenSolver extends JFrame implements ActionListener {
       public void actionPerformed(ActionEvent e) {
              if(e.getSource()== b1 )
              {
-            	 lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
+            	lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
  				repaint();
              }
       }
 	  public static void main(String [] args) {
 //		  JTextField field = new JTextField(10);
 //		  container.add(field, BorderLayout.SOUTH);
-		  JFrame frame = new JFrame("Input Dialog Box");
-		  String name = JOptionPane.showInputDialog(frame, "Enter the size of Board", "InputBox",JOptionPane.PLAIN_MESSAGE);
+		JFrame frame = new JFrame("Input Dialog Box");
+		String name = JOptionPane.showInputDialog(frame, "Enter the size of Board", "InputBox",JOptionPane.PLAIN_MESSAGE);
 		input=Integer.parseInt(name);
 		
 //		System.out.println("Enter the size of the Board: ");
@@ -114,26 +114,13 @@ public class QueenSolver extends JFrame implements ActionListener {
 			lastQueen = new Queen(i, lastQueen);
 			lastQueen.findSolution();
 		}
-		addMouseListener(new MouseKeeper());
+//		addMouseListener(new MouseKeeper());
 		addWindowListener(new CloseQuit());
-		JButton b1;
-		b1 = new JButton("Click Here to Begin!");	
-		b1.setBounds(20, 50*input+70,100,20);
+//		JButton b1;
+		b1 = new JButton("CLick for next solution!");	
+		b1.setBounds(20,50*input+70,100,20);
 		b1.addActionListener(this);
 		add(b1);
-		
-	    // prompt the user to enter their name
-
-//        setLayout(null);
-//        io = new JTextField(5);
-//        io.setBounds(150,20,100,20);
-//        add(io);
-//     
-//        print = new JButton("Enter the size of Board");
-//        print.setBounds(20,20,100,20);
-//        print.addActionListener(this);
-//        add(print);
-   
 	}
 
 	  public void paint(Graphics g) {
@@ -154,12 +141,12 @@ public class QueenSolver extends JFrame implements ActionListener {
 			}
 		}
 
-		private class MouseKeeper extends MouseAdapter {
-			public void mousePressed (MouseEvent e) {
-				lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
-				repaint();
-			}
-		}
+//		private class MouseKeeper extends MouseAdapter {
+//			public void mousePressed (MouseEvent e) {
+//				lastQueen.advance();//we will find a solution to the entire puzzle by asking the right most queen to find an acceptable solution.
+//				repaint();
+//			}
+//		}
 }
 
 
